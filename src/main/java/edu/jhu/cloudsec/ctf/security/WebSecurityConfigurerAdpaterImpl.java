@@ -15,7 +15,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 class WebSecurityConfigurerAdapterImpl extends WebSecurityConfigurerAdapter {
     private static final String USER_ROLE = "USER";
-    private static final String ADMIN_ROLE = "USER";
+    private static final String ADMIN_ROLE = "ADMIN";
+    private static final String DEV_ROLE = "DEV";
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -29,7 +30,9 @@ class WebSecurityConfigurerAdapterImpl extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder)
                 .withUser("user").password(passwordEncoder.encode("user")).roles(USER_ROLE)
                 .and()
-                .withUser("admin").password(passwordEncoder.encode("admin")).roles(USER_ROLE, ADMIN_ROLE);
+                .withUser("admin").password(passwordEncoder.encode("admin")).roles(USER_ROLE, ADMIN_ROLE)
+                .and()
+                .withUser("dev").password(passwordEncoder.encode("dev")).roles(DEV_ROLE, USER_ROLE, ADMIN_ROLE);
     }
 
     @Bean
@@ -42,7 +45,8 @@ class WebSecurityConfigurerAdapterImpl extends WebSecurityConfigurerAdapter {
         http
                 .cors().and()
                 .csrf().disable().authorizeRequests()
-                .antMatchers("/", "/login", "/css/**", "js/**").permitAll()
+                .antMatchers("/", "/login", "/forgot", "/search", "/css/**").permitAll()
+                .antMatchers("/dev").hasRole(DEV_ROLE)
                 .antMatchers("/admin").hasAnyRole(ADMIN_ROLE, USER_ROLE)
                 .antMatchers("/user").hasAnyRole(ADMIN_ROLE, USER_ROLE)
                 .anyRequest().authenticated()

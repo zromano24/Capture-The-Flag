@@ -11,18 +11,20 @@ public class UserController {
 
     @RequestMapping("/user")
     public String user(Model model) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = "Unknown";
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        }
-
-        model.addAttribute("name", username);
-        return "user";
+        return routeToPageWithUsername(model, "user");
     }
 
     @RequestMapping("/admin")
     public String admin(Model model) {
+        return routeToPageWithUsername(model, "admin");
+    }
+
+    @RequestMapping("/dev")
+    public String dev(Model model) {
+        return routeToPageWithUsername(model, "dev");
+    }
+
+    private String routeToPageWithUsername(Model model, String pageName) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = "Unknown";
         if (principal instanceof UserDetails) {
@@ -30,7 +32,7 @@ public class UserController {
         }
 
         model.addAttribute("name", username);
-        return "admin";
+        return pageName;
     }
 
 }

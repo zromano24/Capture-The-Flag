@@ -9,11 +9,11 @@
 </head>
 <body>
 <div class="top-right">
-    <a class="button" href="/logout"> Logout </a>
+    <a class="button" href="/login"> Login </a>
 </div>
 <div id="container">
-    <h1 th:text="'Hello Admin: ' + ${name} + '!'"></h1>
-    <h2>Do admin things:</h2>
+    <h1 th:text="'Search results for: ' + ${queryString} + '!'"></h1>
+    <p th:text="${results}"></p>
 </div>
 </body>
 </html>
