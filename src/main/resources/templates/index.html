@@ -1,12 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link href="../static/css/base.css" th:href="@{/css/base.css}" rel="stylesheet" />
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet" />
+
     <title>Orange Team Capture the Flag</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<a href="/login">
-    <button>Login</button>
-</a>
+    <div id="fullscreen">
+        <h1>Welcome Voters</h1>
+        <h2>Login to cast your vote.</h2>
+        <a style="margin-bottom: 15%;" class="button" href="/login"> Login </a>
+
+    </div>
 </body>
 </html>
