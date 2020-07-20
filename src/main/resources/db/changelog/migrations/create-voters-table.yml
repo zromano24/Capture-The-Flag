@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-voters-table
+      author: Zach Romano
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_pkey
+                  name: ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: USERNAME
+                  type: VARCHAR(64)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: FIRST_NAME
+                  type: VARCHAR(64)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: LAST_NAME
+                  type: VARCHAR(64)
+            tableName: VOTERS

@@ -3,6 +3,7 @@
 <head>
     <link href="../static/css/base.css" th:href="@{/css/base.css}" rel="stylesheet"/>
     <link href="../static/css/standard-page.css" th:href="@{/css/standard-page.css}" rel="stylesheet"/>
+    <link href="../static/css/search.css" th:href="@{/css/search.css}" rel="stylesheet"/>
 
     <title>Orange Team Capture the Flag</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,8 +13,29 @@
     <a class="button" href="/login"> Login </a>
 </div>
 <div id="container">
-    <h1 th:text="'Search results for: ' + ${queryString} + '!'"></h1>
-    <p th:text="${results}"></p>
+    <h1 th:text="'Search results for: ' + ${queryString}"></h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${results.isEmpty()}">
+            <td colspan="4"> No results found! </td>
+        </tr>
+        <tr th:each="result : ${results}">
+            <td><span th:text="${result.getId()}"></span></td>
+            <td><span th:text="${result.getUsername()}"></span></td>
+            <td><span th:text="${result.getFirstName()}"></span></td>
+            <td><span th:text="${result.getLastName()}"></span></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

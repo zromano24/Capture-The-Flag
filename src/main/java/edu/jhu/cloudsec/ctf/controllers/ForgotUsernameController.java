@@ -1,10 +1,14 @@
 package edu.jhu.cloudsec.ctf.controllers;
 
+import edu.jhu.cloudsec.ctf.CtfUser;
 import edu.jhu.cloudsec.ctf.services.H2InjectionChecker;
+import edu.jhu.cloudsec.ctf.services.UnsafeH2DatabaseConnection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 public class ForgotUsernameController {
@@ -21,7 +25,8 @@ public class ForgotUsernameController {
         if (H2InjectionChecker.inputCouldModifyTable(userSearch)) {
             model.addAttribute("results", "Looks like you might be trying to modify the database! You could be arrested for hacking!");
         } else {
-            model.addAttribute("results", "No results!");
+            List<CtfUser> ctfUserList = UnsafeH2DatabaseConnection.findAllUsersByFirstName(userSearch);
+            model.addAttribute("results", ctfUserList);
         }
         return "search";
     }

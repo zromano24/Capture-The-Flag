@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2-seed-voters-table
+      author: Zach Romano
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header:  ID
+                  name:  ID
+                  type:  NUMERIC
+              - column:
+                  header:  USERNAME
+                  name:  USERNAME
+                  type:  STRING
+              - column:
+                  header:  FIRST_NAME
+                  name:  FIRST_NAME
+                  type:  STRING
+              - column:
+                  header:  LAST_NAME
+                  name:  LAST_NAME
+                  type:  STRING
+            encoding:  UTF-8
+            file: seed_data/users.csv
+            quotchar:  ''''
+            relativeToChangelogFile:  true
+            separator: ","
+            tableName:  VOTERS
