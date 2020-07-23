@@ -10,12 +10,13 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: user_pkey
+                    primaryKeyName: voter_pkey
                   name: ID
                   type: BIGINT
               - column:
                   constraints:
                     nullable: false
+                    unique: true
                   name: USERNAME
                   type: VARCHAR(64)
               - column:

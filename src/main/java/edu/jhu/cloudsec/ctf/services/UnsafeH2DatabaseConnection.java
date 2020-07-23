@@ -1,6 +1,6 @@
 package edu.jhu.cloudsec.ctf.services;
 
-import edu.jhu.cloudsec.ctf.CtfUser;
+import edu.jhu.cloudsec.ctf.entities.CtfUser;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;

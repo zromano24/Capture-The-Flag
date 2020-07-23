@@ -19,7 +19,14 @@
 </div>
 <div id="container">
     <h1 th:text="'Hello ' + ${name} + '!'"></h1>
-    <h2>Login to cast your vote.</h2>
+
+    <form style="margin-bottom: 15%;" action="/user/vote" method="post">
+        <input type="radio" id="democrat" name="voteValue" value="DEMOCRAT">
+        <label for="democrat">Democrat</label><br>
+        <input type="radio" id="republican" name="voteValue" value="REPUBLICAN">
+        <label for="republican">Republican</label><br>
+        <button class="button" type="submit">Submit Vote</button>
+    </form>
 </div>
 </body>
 </html>

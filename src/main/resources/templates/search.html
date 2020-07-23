@@ -14,8 +14,9 @@
 </div>
 <div id="container">
     <h1 th:text="'Search results for: ' + ${queryString}"></h1>
+    <p th:if="${error != null}" th:text="${error}"></p>
 
-    <table>
+    <table th:if="${error == null}">
         <thead>
         <tr>
             <th>ID</th>
@@ -28,7 +29,7 @@
         <tr th:if="${results.isEmpty()}">
             <td colspan="4"> No results found! </td>
         </tr>
-        <tr th:each="result : ${results}">
+        <tr th:unless="${results.isEmpty()}" th:each="result : ${results}">
             <td><span th:text="${result.getId()}"></span></td>
             <td><span th:text="${result.getUsername()}"></span></td>
             <td><span th:text="${result.getFirstName()}"></span></td>

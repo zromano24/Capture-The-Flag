@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-create-votes-table
+      author: Zach Romano
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: vote_pkey
+                  name: ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: VOTER_USERNAME
+                  type: VARCHAR(64)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: VOTE_OPTION
+                  type: VARCHAR(64)
+            tableName: VOTES
+
+        - addForeignKeyConstraint:
+            baseColumnNames:  VOTER_USERNAME
+            baseTableName:  VOTES
+            constraintName:  fk_votes_voters
+            onDelete:  CASCADE
+            onUpdate:  RESTRICT
+            referencedColumnNames:  USERNAME
+            referencedTableName:  VOTERS
+            validate:  true

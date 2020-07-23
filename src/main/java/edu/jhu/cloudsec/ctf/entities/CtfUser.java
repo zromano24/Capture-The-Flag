@@ -1,4 +1,4 @@
-package edu.jhu.cloudsec.ctf;
+package edu.jhu.cloudsec.ctf.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

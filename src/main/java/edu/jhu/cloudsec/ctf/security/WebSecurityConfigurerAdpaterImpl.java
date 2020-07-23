@@ -54,6 +54,7 @@ class WebSecurityConfigurerAdapterImpl extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(successHandler)
         ;
+        http.headers().frameOptions().disable();
     }
 
 }

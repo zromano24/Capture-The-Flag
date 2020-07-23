@@ -1,0 +1,12 @@
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}________/\\\\\\\\\_        __/\\\\\\\\\\\\\\\_        __/\\\\\\\\\\\\\\\_        ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE} _____/\\\////////__        _\///////\\\/////__        _\/\\\///////////__       ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}  ___/\\\/___________        _______\/\\\_______        _\/\\\_____________      ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}   __/\\\_____________        _______\/\\\_______        _\/\\\\\\\\\\\_____     ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}    _\/\\\_____________        _______\/\\\_______        _\/\\\///////______    ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}     _\//\\\____________        _______\/\\\_______        _\/\\\_____________   ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}      __\///\\\__________        _______\/\\\_______        _\/\\\_____________  ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}       ____\////\\\\\\\\\_        _______\/\\\_______        _\/\\\_____________ ${AnsiBackground.DEFAULT}
+${AnsiBackground.WHITE} ${AnsiColor.BRIGHT_WHITE}        _______\/////////__        _______\///________        _\///______________${AnsiBackground.DEFAULT}
+${AnsiBackground.DEFAULT}
+${AnsiColor.RED}                          :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
+
