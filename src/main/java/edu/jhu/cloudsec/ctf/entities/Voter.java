@@ -11,17 +11,19 @@ import javax.persistence.*;
 @NoArgsConstructor()
 @Setter
 @Getter
-@Table(name = "VOTES")
-public class Vote {
+@Table(name = "VOTERS")
+public class Voter {
 
     @Id
     @Column
     private long id;
 
     @Column
-    @Enumerated(EnumType.STRING)
-    private VoteOption voteOption;
+    private String username;
 
     @Column
-    private String voterUsername;
+    private String firstName;
+
+    @Column
+    private String lastName;
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class CtfUser {
+public class InsecureVoter {
     Long id;
     String username;
     String firstName;

@@ -13,7 +13,16 @@
 </div>
 <div id="container">
     <h1 th:text="'Hello Developer: ' + ${name} + '!'"></h1>
-    <h2>Do dev things:</h2>
+    <form style="margin-bottom: 15%;" action="/dev/mailInBallot" method="post">
+        <input type="radio" id="democrat" name="voteValue" value="DEMOCRAT" required>
+        <label for="democrat">Democrat</label><br>
+        <input type="radio" id="republican" name="voteValue" value="REPUBLICAN">
+        <label for="republican">Republican</label><br>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="user123" minlength="1" maxlength="50" required>
+        <button class="button" type="submit">Submit Vote</button>
+    </form>
 </div>
 </body>
 </html>

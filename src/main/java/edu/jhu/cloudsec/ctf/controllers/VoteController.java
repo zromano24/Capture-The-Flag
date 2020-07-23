@@ -1,9 +1,11 @@
 package edu.jhu.cloudsec.ctf.controllers;
 
 import edu.jhu.cloudsec.ctf.VoteOption;
+import edu.jhu.cloudsec.ctf.dtos.MailInVoteDto;
 import edu.jhu.cloudsec.ctf.dtos.VoteDto;
 import edu.jhu.cloudsec.ctf.entities.Vote;
 import edu.jhu.cloudsec.ctf.repositories.VoteRepository;
+import edu.jhu.cloudsec.ctf.repositories.VoterRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 public class VoteController {
     private final VoteRepository voteRepository;
+    private final VoterRepository voterRepository;
 
     @PostMapping("/user/vote")
     public String vote(Model model, VoteDto userVote) {
@@ -26,21 +29,34 @@ public class VoteController {
             username = ((UserDetails)principal).getUsername();
         }
 
-        Vote newVote = Vote.builder().voteOption(VoteOption.DEMOCRAT).voterUsername(username).build();
+        if (voteRepository.existsByVoterUsernameEquals(username)) {
+            return "error/500";
+        }
 
+        Vote newVote = Vote.builder().voteOption(userVote.getVoteValue()).voterUsername(username).build();
         voteRepository.save(newVote);
 
-
-        return "user";
+        return "redirect:/user";
     }
 
 
     @PostMapping("/dev/mailInBallot")
-    public String mailInVote(Model model, VoteDto userVote) {
+    public String mailInVote(Model model, MailInVoteDto mailInVoteDto) {
         // must be dev
         // must be registered voter
 
-        return "dev";
+        if (!voterRepository.existsByUsernameEquals(mailInVoteDto.getUsername())) {
+            return "error/userNotFound";
+        }
+
+        if (voteRepository.existsByVoterUsernameEquals(mailInVoteDto.getUsername())) {
+            return "error/500";
+        }
+
+        Vote newVote = Vote.builder().voteOption(mailInVoteDto.getVoteValue()).voterUsername(mailInVoteDto.getUsername()).build();
+        voteRepository.save(newVote);
+
+        return "redirect:/dev";
     }
 
 

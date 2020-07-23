@@ -1,6 +1,6 @@
 package edu.jhu.cloudsec.ctf.services;
 
-import edu.jhu.cloudsec.ctf.entities.CtfUser;
+import edu.jhu.cloudsec.ctf.entities.InsecureVoter;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -12,7 +12,7 @@ public class UnsafeH2DatabaseConnection {
     private UnsafeH2DatabaseConnection() {
     }
 
-    public static List<CtfUser> findAllUsersByFirstName(String firstName) {
+    public static List<InsecureVoter> findAllUsersByFirstName(String firstName) {
         Statement stmt = null;
         String query = "SELECT ID, USERNAME, FIRST_NAME, LAST_NAME " +
                 "FROM VOTERS WHERE FIRST_NAME = '" + firstName + "'";
@@ -24,17 +24,17 @@ public class UnsafeH2DatabaseConnection {
 
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            List<CtfUser> ctfUsers = new LinkedList<>();
+            List<InsecureVoter> insecureVoters = new LinkedList<>();
             while (rs.next()) {
                 long id = rs.getInt("ID");
                 String username = rs.getString("USERNAME");
                 String first = rs.getString("FIRST_NAME");
                 String last = rs.getString("LAST_NAME");
-                CtfUser ctfUser = CtfUser.builder().id(id).firstName(first).lastName(last).username(username).build();
-                ctfUsers.add(ctfUser);
+                InsecureVoter insecureVoter = InsecureVoter.builder().id(id).firstName(first).lastName(last).username(username).build();
+                insecureVoters.add(insecureVoter);
             }
 
-            return ctfUsers;
+            return insecureVoters;
 
         } catch (SQLException e) {
             throw new Error("Problem", e);
