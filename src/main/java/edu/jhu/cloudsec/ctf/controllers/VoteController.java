@@ -1,12 +1,12 @@
 package edu.jhu.cloudsec.ctf.controllers;
 
-import edu.jhu.cloudsec.ctf.VoteOption;
 import edu.jhu.cloudsec.ctf.dtos.MailInVoteDto;
 import edu.jhu.cloudsec.ctf.dtos.VoteDto;
 import edu.jhu.cloudsec.ctf.entities.Vote;
 import edu.jhu.cloudsec.ctf.repositories.VoteRepository;
 import edu.jhu.cloudsec.ctf.repositories.VoterRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @AllArgsConstructor
+@Log4j2
 public class VoteController {
     private final VoteRepository voteRepository;
     private final VoterRepository voterRepository;
@@ -35,13 +36,14 @@ public class VoteController {
 
         Vote newVote = Vote.builder().voteOption(userVote.getVoteValue()).voterUsername(username).build();
         voteRepository.save(newVote);
+        log.info("User: {} has voted!", username);
 
         return "redirect:/user";
     }
 
 
     @PostMapping("/dev/mailInBallot")
-    public String mailInVote(Model model, MailInVoteDto mailInVoteDto) {
+    public String mailInVote(MailInVoteDto mailInVoteDto) {
         // must be dev
         // must be registered voter
 

@@ -1,9 +1,11 @@
 package edu.jhu.cloudsec.ctf.entities;
 
-import edu.jhu.cloudsec.ctf.VoteOption;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Builder

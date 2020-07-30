@@ -15,6 +15,7 @@ import javax.persistence.*;
 public class Vote {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column
     private long id;
 

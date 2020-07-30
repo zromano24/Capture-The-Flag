@@ -8,6 +8,7 @@ databaseChangeLog:
               - column:
                   autoIncrement: true
                   constraints:
+                    autoIncrement: true
                     nullable: false
                     primaryKey: true
                     primaryKeyName: vote_pkey
