@@ -32,7 +32,7 @@ class WebSecurityConfigurerAdapterImpl extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin").password(passwordEncoder.encode("admin")).roles(USER_ROLE, ADMIN_ROLE)
                 .and()
-                .withUser("dev").password(passwordEncoder.encode("dev")).roles(DEV_ROLE, USER_ROLE, ADMIN_ROLE);
+                .withUser("dev").password(passwordEncoder.encode("iAm1VeryBadDeveloper!")).roles(DEV_ROLE, USER_ROLE, ADMIN_ROLE);
     }
 
     @Bean
