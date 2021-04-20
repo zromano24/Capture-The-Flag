@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class VoteController {
 
 
     @PostMapping("/dev/mailInBallot")
-    public String mailInVote(MailInVoteDto mailInVoteDto) {
+    public String mailInVote(MailInVoteDto mailInVoteDto, RedirectAttributes redirectAttributes) {
         // must be dev
         // must be registered voter
 
@@ -55,6 +56,7 @@ public class VoteController {
             return "error/500";
         }
 
+        redirectAttributes.addFlashAttribute("finalFlag", "FLAG 4 PASSPHRASE: \"THIS_IS_THE_FINAL_FLAG__HOPE_YOU_HAD_FUN\"");
         Vote newVote = Vote.builder().voteOption(mailInVoteDto.getVoteValue()).voterUsername(mailInVoteDto.getUsername()).build();
         voteRepository.save(newVote);
 

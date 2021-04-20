@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,7 +31,8 @@ public class UserController {
     }
 
     @RequestMapping("/dev")
-    public String dev(Model model) {
+    public String dev(Model model, @ModelAttribute(value = "finalFlag") final String finalFlag) {
+        model.addAttribute("finalFlag", finalFlag);
         return routeToPageWithUsername(model, "dev");
     }
 
